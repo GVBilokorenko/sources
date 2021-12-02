@@ -1,0 +1,15 @@
+{
+	"name": "fetch",
+	"version": "1.0.0",
+	"description": "",
+	"main": "examples.js",
+	"type": "module",
+	"scripts": {
+		"start": "node examples.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"node-fetch": "^3.1.0"
+	}
+}
