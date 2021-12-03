@@ -11,6 +11,10 @@
 	"dependencies": {
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
-		"nodemon": "^2.0.15"
+		"nodemon": "^2.0.15",
+		"prom-client": "^13.2.0",
+		"swagger-stats": "^0.99.2",
+		"swagger-ui-express": "^4.2.0",
+		"yamljs": "^0.3.0"
 	}
 }

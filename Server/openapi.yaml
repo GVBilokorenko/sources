@@ -1,0 +1,130 @@
+# версія Open API, що використовується 
+openapi: "3.0.3"
+
+# Загальна інфорація про наш сервіс
+info: 
+  # Коротка назва
+  title: "RESTfull service API"
+  # Опис
+  description: "API for my project `Developing RESTful services on Node` "
+  # Версія нашого API
+  version: "0.1"
+  # Контактна інформація
+  contact:
+    name: "Artem Bilokorenko"
+    url: "https://gvbilokorenko.github.io/edu-dis-labs/"
+    email: "abilokorenko@gmail.com"
+  # Ліцензія (створіть статичний файл ліцензії в нашому сервісі та  вкажіть її URL)
+  license: 
+    name: "ECL 2.0"
+    url: "https://gvbilokorenko.github.io/edu-dis-labs/license.html"
+
+# Посилання на додаткову інформацію    
+externalDocs:
+  description: "See also Educational Materials"
+  url: "https://boldak.github.io/dis-edu/swagger/12.api.html#openapi-swagger"
+
+# Список серверів, які можна використовувати для перевірки API
+servers:
+  
+  - url: "http://localhost:8000"
+    description: "Local development"
+
+paths:
+  # Кінцева точка (разом з servers - http://localhost:8000/ )
+  /catalog:
+    get: 
+      # Короткий опис, відображується коли панель кінцевої точки згорнута
+      summary: "Get all catalog"
+      # Повний опис
+      description: "Returns data from catalog in JSON"
+      tags:
+        - "CRUD"
+      # Опис можливих відповідей
+      responses:
+        # Код 200 - успішне оброблення запиту
+        200: 
+          description: "Successful response"
+          content:
+            # MIME-тип ( ми повертаємо JSON код)
+            application/json:
+              # Тип результата - string
+              schema:
+                type: "object"
+              # Приклад
+              example: [
+                {"id":1,"name":"First","description":"Very cool!","price":11700},
+                {"id":2,"name":"Second","description":"Very cool!","price":11700}
+                ]
+                
+  # Кінцева точка (разом з servers - http://localhost:8000/ )
+  /catalog/{id}:
+    get: 
+      # Короткий опис, відображується коли панель кінцевої точки згорнута
+      summary: "Get item with id"
+      tags:
+        - "CRUD"
+        - "ITEM ID REQUIRED"
+        - "RETURNS ONE ITEM"
+      # Параметер
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the item in the catalog
+      # Повний опис
+      description: "Returns data aabout specif item with id from catalog in JSON"
+      # Опис можливих відповідей
+      responses:
+        # Код 200 - успішне оброблення запиту
+        200: 
+          description: "Successful response"
+          content:
+            # MIME-тип ( ми повертаємо JSON код)
+            application/json:
+              # Тип результата - string
+              schema:
+                type: "object"
+              # Приклад
+              example: {"id":1,"name":"First","description":"Very cool!","price":11700}
+              
+  # Кінцева точка (разом з servers - http://localhost:8000/ )
+  /catalog/post:
+    post: 
+      # Короткий опис, відображується коли панель кінцевої точки згорнута
+      summary: "Get all catalog"
+      # Повний опис
+      description: "Returns string"
+      
+      tags:
+        - "CRUD"
+        - "REQUEST BODY REQUIRED"
+        - "RETURNS ONE ITEM"
+      
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+            example:
+              id: 10
+              name: Some name
+      
+      # Опис можливих відповідей
+      responses:
+        # Код 200 - успішне оброблення запиту
+        200: 
+          description: "Successful response"
+          content:
+            # MIME-тип ( ми повертаємо JSON код)
+            text/plain; charset=utf-8:
+              # Тип результата - string
+              schema:
+                type: "string"
+              # Приклад
+              example: "Successfuly sended data"
+
